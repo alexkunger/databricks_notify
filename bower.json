@@ -1,0 +1,23 @@
+{
+  "name": "databricks_notify",
+  "version": "0.0.1",
+  "homepage": "https://github.com/alexkunger/databricks_notify",
+  "authors": [
+    "Alex Unger <alex.k.unger@gmail.com>"
+  ],
+  "description": "Get notified when your databricks notebook completes.",
+  "keywords": [
+    "databricks"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}
