@@ -4,9 +4,9 @@ function start_monitor() {
         ifttt_token: ""
     }, function(items) {
         ifttt_token = items.ifttt_token;
-				if (ifttt_token == "") {
-					alert("Please set your ifttt Maker token in options.");
-				}
+        if (ifttt_token == "") {
+            alert("Please set your ifttt Maker token in options.");
+        }
     });
 
     chrome.tabs.query({
