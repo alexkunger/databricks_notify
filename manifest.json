@@ -1,39 +1,39 @@
 {
-  "name": "DataBricks Notify",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "Monitor your running databricks queries.",
-  "homepage_url": "https://github.com/alexkunger/databricks_notify",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "background": {
-    "scripts": [
-      "src/bg/background.js", "bower_components/jquery/dist/jquery.min.js"
+    "name": "DataBricks Notify",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "Monitor your running databricks queries.",
+    "homepage_url": "https://github.com/alexkunger/databricks_notify",
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "background": {
+        "scripts": [
+            "src/bg/background.js", "bower_components/jquery/dist/jquery.min.js"
+        ],
+        "persistent": true
+    },
+    "options_page": "src/options/options.html",
+    "browser_action": {
+        "default_icon": "icons/icon19.png",
+        "default_title": "Monitor databricks",
+        "default_popup": "src/browser_action/browser_action.html"
+    },
+    "permissions": [
+        "notifications",
+        "https://automatic.cloud.databricks.com/*",
+        "https://maker.ifttt.com/trigger/dbend/with/key/",
+        "storage"
     ],
-    "persistent": true
-  },
-  "options_page": "src/options/options.html",
-  "browser_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "Monitor databricks",
-    "default_popup": "src/browser_action/browser_action.html"
-  },
-  "permissions": [
-    "notifications",
-    "https://automatic.cloud.databricks.com/*",
-    "storage"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://automatic.cloud.databricks.com/*"
-      ],
-      "js": [
-        "src/inject/inject.js", "bower_components/jquery/dist/jquery.min.js"
-      ]
-    }
-  ]
+    "content_security_policy": "script-src 'self' https://maker.ifttt.com; object-src 'self'",
+    "content_scripts": [{
+        "matches": [
+            "https://automatic.cloud.databricks.com/*"
+        ],
+        "js": [
+            "src/inject/inject.js", "bower_components/jquery/dist/jquery.min.js"
+        ]
+    }]
 }
