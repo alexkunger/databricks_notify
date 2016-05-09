@@ -1,13 +1,12 @@
 var isrunningInterval;
 var isdoneInterval;
 var finish_message = "";
-var ifttt_token = "";
 
 chrome.extension.sendMessage({}, function(response) {
     var readyStateCheckInterval = setInterval(function() {
         if (document.readyState === "complete") {
             clearInterval(readyStateCheckInterval);
-
+console.log("running");
             chrome.runtime.onMessage.addListener(
                 function(request, sender, sendResponse) {
                     console.log("request:" + request.action);
@@ -16,7 +15,6 @@ chrome.extension.sendMessage({}, function(response) {
                         clearInterval(isdoneInterval);
                         check_and_notify();
                         finish_message = request.next_do;
-                        ifttt_token = request.ifttt_token;
                     } else if (request.action == "stop") {
                         clearInterval(isrunningInterval);
                         clearInterval(isdoneInterval);
@@ -43,15 +41,12 @@ function check_and_notify() {
             running = false;
             clearInterval(isdoneInterval);
             console.log("running_done");
-            $.ajax({
-                type: 'POST',
-                url: 'https://maker.ifttt.com/trigger/dbend/with/key/' + ifttt_token,
-                data: {
-                    value1: $('.tb-title').get(0).innerText,
-                    value2: finish_message
-                },
-                crossDomain: true
-            });
+
+            chrome.runtime.sendMessage({
+                action: "notify",
+                notebook: $('.tb-title').get(0).innerText,
+                finish_message: finish_message
+            }, function(response) {});
         }
     }, 100);
 }
