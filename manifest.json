@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "Monitor your running databricks queries.",
+  "homepage_url": "https://github.com/alexkunger/databricks_notify",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
